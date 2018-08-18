@@ -1,12 +1,7 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
+  
 .App-header {
   background-color: #222;
   height: 150px;
@@ -25,4 +20,23 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 5em;
+}
+
+.square {
+  border: 1px solid black;
+  margin: 1px;
+  width: 5em;
+  background-color: rgb(228, 228, 236);
+  box-shadow: 15px 15px 38px #888888;
+}
+
+.square:hover {
+  background-color: aliceblue;
 }

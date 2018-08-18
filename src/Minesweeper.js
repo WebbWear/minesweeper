@@ -36,12 +36,12 @@ class Minesweeper extends Component {
                 {this.state.game.board.map((row, i) => {
                     console.log("row", row, i)
                     return (
-                        <div>
+                        <div class ="container">
+                            
                             {row.map((col, j) => {
                                 return <span className="square">
                                     {this.state.game.board[i][j]}
-                                    is at
-                                {`${i}, ${j}`}
+                                {/* {`${i}, ${j}`} */}
                                 </span>
                             })}
                         </div>

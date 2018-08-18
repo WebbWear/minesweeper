@@ -8,9 +8,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <section className="img_container"></section>
+
+          <h1 className="App-title">Minesweeper</h1>
         </header>
+
         <Minesweeper/>
       </div>
     );
