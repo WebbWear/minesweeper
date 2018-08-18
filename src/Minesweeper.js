@@ -31,6 +31,7 @@ class Minesweeper extends Component {
     render() {
         return (
             <div>
+                
                 currently playing   {this.state.game.id}
 
                 {this.state.game.board.map((row, i) => {
