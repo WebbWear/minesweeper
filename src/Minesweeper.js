@@ -8,8 +8,8 @@ class Minesweeper extends Component {
         this.state = {
             game: {
                 board: []
-                gameId: '',
-                difficulty: 0
+                // gameId: '',
+                // difficulty: 0
             }
         }
     }
@@ -26,7 +26,7 @@ class Minesweeper extends Component {
                 // console.log("game", newGame);
                 this.setState({
                     game: newGame
-                    gameId: newGame.id
+                    // gameId: newGame.id
                 })
             })
     }
@@ -49,7 +49,7 @@ class Minesweeper extends Component {
 
     //game event when clicked
     clickedSquare = (row, column) => {
-        fetch(`${BoardURL}/games/${this.state.gameId}/check`, {
+        fetch(`${BASE_URL}/games/${this.state.gameId}/check`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ class Minesweeper extends Component {
 
     flaggedSquare = (e , row, column) => {
         e.preventDefault()
-        fetch(`${BoardURL}/games/${this.state.gameId}/flag`, {
+        fetch(`${BASE_URL}/games/${this.state.gameId}/flag`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -100,14 +100,15 @@ class Minesweeper extends Component {
     render() {
         return (
             <div>
-                <div>
+            <div className='Result'>{this.state.game.state}</div>
+              <div>
                 <div className='Difficulty-Menu'>
                     <select>
                         <option>Easy</option>
                         <option>Medium</option>
                         <option>Hard</option>
                     </select>
-                    <button placeholder="Restart"></button>
+                    <button className='Restart-Button'>Restart</button>
                 </div>
               </div>
               <div className='Board'>
@@ -118,20 +119,20 @@ class Minesweeper extends Component {
                     return (
                         <div key={i} className='row square'>
                             {row.map((col, j) => {
-                                return 
-                                <span key={j}
-                                className='column square'
-                                onClick={() => this.clickedSquare(i, j)}
-                                onContextMenu={(e) => this.flaggedSquare(e, i, j)}>
-                                  {this.renderCells(i, j)}
-                                </span>
-                            )
-                            })}
-                        </div>
-                    )
-                })}
-                    </div>
+                                return (
+                                    <span key={j}
+                                    className='column square'
+                                    onClick={() => this.clickedSquare(i, j)}
+                                    onContextMenu={(e) => this.flaggedSquare(e, i, j)}>
+                                      {this.renderCells(i, j)}
+                                      </span>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}  
                 </div>
+              </div>
             </div>
         );
     }
