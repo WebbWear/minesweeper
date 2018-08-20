@@ -8,21 +8,25 @@ class Minesweeper extends Component {
         this.state = {
             game: {
                 board: []
+                gameId: '',
+                difficulty: 0
             }
         }
     }
 
     componentDidMount() {
         // create the board
-        // create board 
         fetch(BASE_URL + "games", {
             method: "POST",
             body: JSON.stringify({ difficulty: 0 })
-        }).then(resp => resp.json())
+        })
+        
+        .then(resp => resp.json())
             .then(newGame => {
-                console.log("game", newGame);
+                // console.log("game", newGame);
                 this.setState({
                     game: newGame
+                    gameId: newGame.id
                 })
             })
     }
