@@ -7,26 +7,30 @@ class Minesweeper extends Component {
         super(props);
         this.state = {
             game: {
-                board: []
-                // gameId: '',
-                // difficulty: 0
+                board: [],
+                gameId: '',
+                difficulty: 0,
+                message: ''
             }
         }
     }
 
+    displayGameresult () {
+
+    }
+
     componentDidMount() {
         // create the board
-        fetch(BASE_URL + "games", {
+        fetch(`${BASE_URL}/games`, {
             method: "POST",
-            body: JSON.stringify({ difficulty: 0 })
+            body: JSON.stringify({ difficulty: 0 }),
+            headers:{ 
+                'Content:Type': 'application/json' }
         })
-        
-        .then(resp => resp.json())
-            .then(newGame => {
-                // console.log("game", newGame);
-                this.setState({
-                    game: newGame
-                    // gameId: newGame.id
+                .then(resp => resp.json())
+                .then(newGame => {
+                    this.setState({
+                        game: newGame
                 })
             })
     }
@@ -49,7 +53,7 @@ class Minesweeper extends Component {
 
     //game event when clicked
     clickedSquare = (row, column) => {
-        fetch(`${BASE_URL}/games/${this.state.gameId}/check`, {
+        fetch(`${BASE_URL}games/${this.state.gameId}/check`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -75,8 +79,8 @@ class Minesweeper extends Component {
         .catch(console.error)
     }
 
-    flaggedSquare = (e , row, column) => {
-        e.preventDefault()
+    flaggedSquare = (event , row, column) => {
+        event.preventDefault()
         fetch(`${BASE_URL}/games/${this.state.gameId}/flag`, {
             method: "POST",
             headers: {
@@ -100,6 +104,7 @@ class Minesweeper extends Component {
     render() {
         return (
             <div>
+            <h1>{this.state.message}</h1>
             <div className='Result'>{this.state.game.state}</div>
               <div>
                 <div className='Difficulty-Menu'>
@@ -113,19 +118,17 @@ class Minesweeper extends Component {
               </div>
               <div className='Board'>
                 <div className='Board-Border'>
-
-                {this.state.game.board.map((row, i) => {
-                    // console.log("row", row, i)
-                    return (
-                        <div key={i} className='row square'>
-                            {row.map((col, j) => {
-                                return (
-                                    <span key={j}
-                                    className='column square'
-                                    onClick={() => this.clickedSquare(i, j)}
-                                    onContextMenu={(e) => this.flaggedSquare(e, i, j)}>
-                                      {this.renderCells(i, j)}
-                                      </span>
+                    {this.state.game.board.map((row, i) => {
+                        return (
+                            <div key={i} className='row square'>
+                                {row.map((col, j) => {
+                                    return (
+                                        <span key={j}
+                                        className='column square'
+                                        onClick={() => this.clickedSquare(i, j)}
+                                        onContextMenu={(event) => this.flaggedSquare(event, i, j)}>
+                                          {this.renderCells(i, j)}
+                                        </span>
                                     )
                                 })}
                             </div>
@@ -137,6 +140,7 @@ class Minesweeper extends Component {
         );
     }
 }
+
 
 export default Minesweeper;
 

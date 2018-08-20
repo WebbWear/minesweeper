@@ -1,87 +1,60 @@
 .App {
   text-align: center;
 }
-  
+
 .App-header {
   background-color: #222;
-  height: 150px;
   padding: 20px;
   color: white;
-  
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-/* .App-intro {
-  font-size: large;
-} */
-
-
-.Board {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  height: 5em;
-}
-
-.Board-Border {
-  border: 1px solid black;
-  margin: 5px;
-  width: 10em;
-  background-color: rgb(228, 228, 236);
-  box-shadow: 15px 15px 38px #888888;
-}
-
-.square:hover {
-  background-color: aliceblue;
-} 
-
-
 .Board {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-} 
- 
+}
+
 .Board-Border {
   border: .1em solid rgb(197, 202, 209);
-} 
+}
 
 .row {
   display: flex;
-  height: 2em;
+  height: 5em;
 }
 
 .column {
   display: flex;
   justify-content: center;
   border: .1em solid rgb(197, 202, 209);
-  width: 2em;
-  height: 2em;
+  width: 5em;
+  height: 5em;
   align-items: center;
 }
 
 .square {
-  background-color: lightgray;
+  background-color: rgb(179, 190, 194);
   text-align: center;
   font-weight: bold;
   cursor: pointer;
 }
 
 .square:hover {
-  background-color: darkgrey;
+  background-color: rgb(142, 173, 202);
 }
 
- .Difficulty-Menu {
+.Difficulty-Menu {
   display: flex;
   justify-content: center;
   align-content: center;
   clear: both;
   padding: 20px;
-} 
+}
 
 .Restart-Button {
   float: right;
@@ -96,9 +69,9 @@
   cursor: pointer;
 }
 
- .Restart-Button {
+.Restart-Button {
   opacity: .8;
-} 
+}
 
 .Result {
   color: black;
