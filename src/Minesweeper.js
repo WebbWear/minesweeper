@@ -59,12 +59,44 @@ class Minesweeper extends Component {
                 "col": column
             })
         })
+
         .then(resp => resp.json())
         .then(newGame => {
             this.setState({
                 game: newGame
+            })
+            if (this.state.game.state === "lost") {
+                console.log('You Lose!')
+            }
+            else if (this.state.game.state === "won") {
+                console.log('You Won!')
+            }
+        })
+        .catch(console.error)
+    }
 
+    flaggedSquare = (e , row, column) => {
+        e.preventDefault()
+        fetch(`${BoardURL}/games/${this.state.gameId}/flag`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "row": row,
+                "col": column
+            })
+        })
 
+        .then(resp => resp.json())
+        .then(newGame => {
+            this.setState({
+                game: newGame
+            })
+        })
+    }
+
+    
     render() {
         return (
             <div>
