@@ -47,6 +47,22 @@ class Minesweeper extends Component {
         }
     }
 
+    //game event when clicked
+    clickedSquare = (row, column) => {
+        fetch(`${BoardURL}/games/${this.state.gameId}/check`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "row": row,
+                "col": column
+            })
+        })
+        .then(resp => resp.json())
+        .then(newGame => {
+            this.setState({
+                game: newGame
 
 
     render() {
