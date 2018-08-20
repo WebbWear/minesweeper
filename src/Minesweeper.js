@@ -100,24 +100,38 @@ class Minesweeper extends Component {
     render() {
         return (
             <div>
-                
-                currently playing   {this.state.game.id}
+                <div>
+                <div className='Difficulty-Menu'>
+                    <select>
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                    <button placeholder="Restart"></button>
+                </div>
+              </div>
+              <div className='Board'>
+                <div className='Board-Border'>
 
                 {this.state.game.board.map((row, i) => {
-                    console.log("row", row, i)
+                    // console.log("row", row, i)
                     return (
-                        <div class ="container">
-                            
+                        <div key={i} className='row square'>
                             {row.map((col, j) => {
-                                return <span className="square">
-                                    {this.state.game.board[i][j]}
-                                {/* {`${i}, ${j}`} */}
+                                return 
+                                <span key={j}
+                                className='column square'
+                                onClick={() => this.clickedSquare(i, j)}
+                                onContextMenu={(e) => this.flaggedSquare(e, i, j)}>
+                                  {this.renderCells(i, j)}
                                 </span>
+                            )
                             })}
                         </div>
                     )
-                    return
                 })}
+                    </div>
+                </div>
             </div>
         );
     }
