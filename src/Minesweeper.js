@@ -31,6 +31,23 @@ class Minesweeper extends Component {
             })
     }
 
+    //game pieces
+    renderCells = (row, column) => {
+        if (this.state.game.board[row][column] === "_") {
+            return "◻️"
+        }
+        else if (this.state.game.board[row][column] === "F") {
+            return "🚩"
+        }
+        else if (this.state.game.board[row][column] === "*") {
+            return "💣"
+        }
+        else {
+            return this.state.game.board[row][column]
+        }
+    }
+
+
 
     render() {
         return (
